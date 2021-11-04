@@ -32,7 +32,7 @@ namespace GroundTerminalSystem
         /// <param name="e">Calling event args.</param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //Add code to change between tabs here.
         }
      }
 }
