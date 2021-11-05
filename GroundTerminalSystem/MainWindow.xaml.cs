@@ -20,6 +20,7 @@ namespace GroundTerminalSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,5 +35,15 @@ namespace GroundTerminalSystem
         {
             //Add code to change between tabs here.
         }
-     }
+
+        private void StartServerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Director.StartServer();
+        }
+
+        private void StopServerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Director.StopServer();
+        }
+    }
 }
