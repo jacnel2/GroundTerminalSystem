@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\AttitudeParams.cs" />
+    <Compile Include="Data\Flight.cs" />
     <Compile Include="Data\G-ForceParams.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

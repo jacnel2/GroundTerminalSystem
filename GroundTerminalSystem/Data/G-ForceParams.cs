@@ -35,7 +35,7 @@ namespace GroundTerminalSystem.Data
             {
                 return Time;
             }
-            protected set
+            set
             {
                 Time = value;
             }
@@ -48,7 +48,7 @@ namespace GroundTerminalSystem.Data
             {
                 return AccelX;
             }
-            protected set
+            set
             {
                 AccelX = value;
             }
@@ -61,7 +61,7 @@ namespace GroundTerminalSystem.Data
             {
                 return AccelY;
             }
-            protected set
+            set
             {
                 AccelY = value;
             }
@@ -74,7 +74,7 @@ namespace GroundTerminalSystem.Data
             {
                 return AccelZ;
             }
-            protected set
+            set
             {
                 AccelZ = value;
             }
@@ -87,7 +87,7 @@ namespace GroundTerminalSystem.Data
             {
                 return Weight;
             }
-            protected set
+            set
             {
                 AccelZ = value;
             }

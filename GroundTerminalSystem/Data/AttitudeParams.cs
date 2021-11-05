@@ -33,7 +33,7 @@ namespace GroundTerminalSystem
             {
                 return Time;
             }
-            protected set
+            set
             {
                 Time = value;
             }
@@ -46,7 +46,7 @@ namespace GroundTerminalSystem
             {
                 return Altitude;
             }
-            protected set
+            set
             {
                 Altitude = value;
             }
@@ -59,7 +59,7 @@ namespace GroundTerminalSystem
             {
                 return Pitch;
             }
-            protected set
+            set
             {
                 Pitch = value;
             }
@@ -72,7 +72,7 @@ namespace GroundTerminalSystem
             {
                 return Bank;
             }
-            protected set
+            set
             {
                 Bank = value;
             }
