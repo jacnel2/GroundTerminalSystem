@@ -4,34 +4,56 @@ using System.Threading;
 using System.Net.Sockets;
 using System.IO;
 
-namespace GT_connection_example
+namespace GroundTerminalSystem
 {
+    /// <summary>
+    /// Handles receving packets from the ATS and processing the data within.
+    /// </summary>
     public class Communication
     {
+        /// <value>Socket for the client (ATS).</value>
         private TcpClient clientSocket;
+        /// <value>ATS instance identifier.</value>
         private String ATS_ID;
+        /// <value>Thread which receives the comms.</value>
+        private Thread th;
+        /// <value>Controls the comms loop which in turn controls comms in general.</value>
+        bool bLoop = true;
 
-
-        public void StartCommunication(TcpClient inClientSocket, String ATS_ID)
+        /// <summary>
+        /// Handles receving packets from the ATS and processing the data within.
+        /// </summary>
+        /// <param name="inClientSocket"></param>
+        /// <param name="ATS_ID"></param>
+        public Communication(TcpClient inClientSocket, String ATS_ID)
         {
             // - Initial Settings
             this.clientSocket = inClientSocket;
             this.ATS_ID = ATS_ID;
+        }
 
+        /// <summary>
+        /// Starts the process of receiving packets.
+        /// </summary>
+        public void StartCommunication()
+        {
+            bLoop = true;
             // - Start Threading to get packet
-            Thread th = new Thread(GetPacket);
+            th = new Thread(GetPacket);
             th.Start();
         }
 
+        /// <summary>
+        /// Receives packets from the ATS.
+        /// </summary>
         private void GetPacket()
         {
             String dataFromClient = null;
             NetworkStream networkStream = clientSocket.GetStream();
             byte[] bytesFrom = new byte[clientSocket.ReceiveBufferSize];
-            MemoryStream s = new MemoryStream(); // - you can use memory stream if you want
+            //MemoryStream s = new MemoryStream(); // - you can use memory stream if you want
 
             // Step 1. Loop until the connection is lost
-            bool bLoop = true;
             while (bLoop) // <= or simply you can ch do ~ while (s.Length < (int)clientSocket.ReceiveBufferSize);
             {
                 try
@@ -68,6 +90,13 @@ namespace GT_connection_example
            networkStream.Close();
         }
 
-
+        /// <summary>
+        /// Stops the communication loop in GetPacket, joins the thread.
+        /// </summary>
+        public void StopCommunication()
+        {
+            bLoop = false;
+            th.Join(Commons.THREAD_JOIN_WAIT);
+        }
     }
 }

@@ -20,6 +20,9 @@ namespace GroundTerminalSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        //This is just TEMP!!
+        Server theServer = new Server("50001");
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,5 +37,15 @@ namespace GroundTerminalSystem
         {
             //Add code to change between tabs here.
         }
-     }
+
+        private void StartServerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            theServer.StartBeingAServer();
+        }
+
+        private void StopServerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            theServer.StopBeingAServer();
+        }
+    }
 }

@@ -9,15 +9,26 @@
     <DockPanel>
         <TabControl x:Name="TabCntrl" DockPanel.Dock="Top" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Real Time Information System">
-                <ListView x:Name="RealTimeFlightData">
-                    <ListView.View>
-                        <GridView>
-                            
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="RealTimeFlightData" Grid.Row="0" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
 
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="StartServerBtn" Grid.Row="1" Grid.Column="0" Click="StartServerBtn_Click">Start Server</Button>
+                    <Button x:Name="StopServerBtn" Grid.Row="1" Grid.Column="1" Click="StopServerBtn_Click">Stop Server</Button>
+                </Grid>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
