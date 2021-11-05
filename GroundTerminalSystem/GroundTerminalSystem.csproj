@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Communication.cs" />
     <Compile Include="Data\AttitudeParams.cs" />
     <Compile Include="Data\Flight.cs" />
     <Compile Include="Data\G-ForceParams.cs" />
