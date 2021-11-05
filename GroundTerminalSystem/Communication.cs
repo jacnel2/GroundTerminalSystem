@@ -48,13 +48,11 @@ namespace GroundTerminalSystem
         /// </summary>
         private void GetPacket()
         {
-            String dataFromClient = null;
+            String dataFromClient;
             NetworkStream networkStream = clientSocket.GetStream();
             byte[] bytesFrom = new byte[clientSocket.ReceiveBufferSize];
-            //MemoryStream s = new MemoryStream(); // - you can use memory stream if you want
-
-            // Step 1. Loop until the connection is lost
-            while (bLoop) // <= or simply you can ch do ~ while (s.Length < (int)clientSocket.ReceiveBufferSize);
+            
+            while (bLoop)
             {
                 try
                 {
