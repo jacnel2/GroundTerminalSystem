@@ -20,11 +20,17 @@ namespace GroundTerminalSystem
         /// <value>Instance of the Server, which is used to receive Communication from the ATS</value>
         public static Server ServerInstance = new Server("50001");
 
+        /// <summary>
+        /// Starts the server.
+        /// </summary>
         public static void StartServer()
         {
             ServerInstance.StartBeingAServer();
         }
 
+        /// <summary>
+        /// Stops the server.
+        /// </summary>
         public static void StopServer()
         {
             ServerInstance.StopBeingAServer();
