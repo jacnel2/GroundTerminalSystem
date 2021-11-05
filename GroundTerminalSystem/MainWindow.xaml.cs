@@ -20,8 +20,6 @@ namespace GroundTerminalSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        //This is just TEMP!!
-        Server theServer = new Server("50001");
 
         public MainWindow()
         {
@@ -40,12 +38,12 @@ namespace GroundTerminalSystem
 
         private void StartServerBtn_Click(object sender, RoutedEventArgs e)
         {
-            theServer.StartBeingAServer();
+            Director.StartServer();
         }
 
         private void StopServerBtn_Click(object sender, RoutedEventArgs e)
         {
-            theServer.StopBeingAServer();
+            Director.StopServer();
         }
     }
 }

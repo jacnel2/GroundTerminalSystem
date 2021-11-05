@@ -12,7 +12,7 @@ namespace GroundTerminalSystem
     /// <summary>
     /// Handles receving communcations from the ATS.
     /// </summary>
-    class Server
+    public class Server
     {
         //****PUBLIC****
         /// <value>The IP address for this server.</value>
