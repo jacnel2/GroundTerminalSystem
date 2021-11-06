@@ -9,19 +9,27 @@ namespace GroundTerminalSystem.Data
     /// <summary>
     /// Models the G Force Parameter data for the flight.
     /// </summary>
-    class G_ForceParams
+    public class G_ForceParams
     {
         /// <summary>
         /// Models the G Force Parameter data for the flight.
         /// </summary>
-        /// <param name="time">Time at which the data was collected.</param>
+        public G_ForceParams()
+        {
+            //nothing
+        }
+
+        /// <summary>
+        /// Models the G Force Parameter data for the flight.
+        /// </summary>
+        /// <param name="timestamp">Time at which the data was collected.</param>
         /// <param name="accelX">Acceleration in the X direction.</param>
         /// <param name="accelY">Acceleration in the Y direction.</param>
         /// <param name="accelZ">Acceleration in the Z direction.</param>
         /// <param name="weight">Weight of the craft.</param>
-        public G_ForceParams(DateTime time, float accelX, float accelY, float accelZ, float weight)
+        public G_ForceParams(DateTime timestamp, float accelX, float accelY, float accelZ, float weight)
         {
-            Time = time;
+            Timestamp = timestamp;
             AccelX = accelX;
             AccelY = accelY;
             AccelZ = accelZ;
@@ -29,68 +37,18 @@ namespace GroundTerminalSystem.Data
         }
 
         /// <value>Indicates the time at which the reading was taken</value>
-        public DateTime Time
-        {
-            get
-            {
-                return Time;
-            }
-            set
-            {
-                Time = value;
-            }
-        }
+        public DateTime Timestamp { get; set; }
 
         /// <value>Acceleration in the X direction at time of measurement.</value>
-        public float AccelX
-        {
-            get
-            {
-                return AccelX;
-            }
-            set
-            {
-                AccelX = value;
-            }
-        }
+        public float AccelX { get; set; }
 
         /// <value>Acceleration in the Y direction at time of measurement.</value>
-        public float AccelY
-        {
-            get
-            {
-                return AccelY;
-            }
-            set
-            {
-                AccelY = value;
-            }
-        }
+        public float AccelY { get; set; }
 
         /// <value>Acceleration in the Z direction at time of measurement.</value>
-        public float AccelZ
-        {
-            get
-            {
-                return AccelZ;
-            }
-            set
-            {
-                AccelZ = value;
-            }
-        }
+        public float AccelZ { get; set; }
 
         /// <value>Weight of craft in lbs at time of measurement.</value>
-        public float Weight
-        {
-            get
-            {
-                return Weight;
-            }
-            set
-            {
-                AccelZ = value;
-            }
-        }
+        public float Weight { get; set; }
     }
 }

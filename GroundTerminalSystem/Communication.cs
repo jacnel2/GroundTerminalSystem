@@ -73,6 +73,8 @@ namespace GroundTerminalSystem
                     else
                     {
                         Console.WriteLine("ATS [" + ATS_ID + "] : " + dataFromClient);
+                        Commons.AsyncMethodCaller caller = new Commons.AsyncMethodCaller(Director.SendFlightDataToMemory);
+                        caller.Invoke(dataFromClient);
                     }
                 }
                 // - when the connection is lost

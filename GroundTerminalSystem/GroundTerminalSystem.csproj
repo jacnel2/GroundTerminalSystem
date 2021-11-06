@@ -59,6 +59,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commons.cs" />
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\FlightComparer.cs" />
+    <Compile Include="Data\FlightDisplay.cs" />
+    <Compile Include="Data\IData.cs" />
+    <Compile Include="Data\IDataFlight.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="Server.cs" />
     <Page Include="MainWindow.xaml">

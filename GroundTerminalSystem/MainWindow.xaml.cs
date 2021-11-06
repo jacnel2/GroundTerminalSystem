@@ -1,7 +1,10 @@
-﻿using System;
+﻿using GroundTerminalSystem.Data;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,10 +23,20 @@ namespace GroundTerminalSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <value>Thread to update the RealTimeInformation screen.</value>
+        //private Thread ScreenUpdater;
+        /// <value>Controls thread to update the RealTimeInformation screen.</value>
+        private bool RunScreenUpdater = true;
 
+        /// <summary>
+        /// Interaction logic for MainWindow.xaml
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+            RealTimeFlightData.ItemsSource = Director.DisplayFlightDataInMemory();
+            RunScreenUpdater = true;
+            UpdateScreen();
         }
 
         /// <summary>
@@ -36,14 +49,34 @@ namespace GroundTerminalSystem
             //Add code to change between tabs here.
         }
 
+        /// <summary>
+        /// Calls the Director to start the Server upon button click.
+        /// </summary>
         private void StartServerBtn_Click(object sender, RoutedEventArgs e)
         {
             Director.StartServer();
+            RunScreenUpdater = true;
         }
 
+        /// <summary>
+        /// Calls the Director to STOP the Server upon button click.
+        /// </summary>
         private void StopServerBtn_Click(object sender, RoutedEventArgs e)
         {
             Director.StopServer();
+            RunScreenUpdater = false;
+        }
+
+        /// <summary>
+        /// Updates the RealTimeInformation screen every set number of seconds. 
+        /// </summary>
+        private async Task UpdateScreen()
+        {
+            while (RunScreenUpdater)
+            {
+                await Task.Delay(Commons.THREAD_SCREEN_UPDATE_WAIT);
+                RealTimeFlightData.Items.Refresh();
+            }
         }
     }
 }
