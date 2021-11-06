@@ -111,7 +111,7 @@ namespace GroundTerminalSystem
         public void StopBeingAServer()
         {
             RunServer = false;
-            ServerThread.Join(Commons.THREAD_JOIN_WAIT);
+            ServerThread?.Join(Commons.THREAD_JOIN_WAIT);
             if (ATSInstances != null)
             {
                 foreach (Communication client in ATSInstances)
@@ -121,7 +121,7 @@ namespace GroundTerminalSystem
             }
             ATSInstances.Clear();
             ATSInstances.TrimExcess();
-            Socket_Server.Stop();
+            Socket_Server?.Stop();
         }
     }
 }
