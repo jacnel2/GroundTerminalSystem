@@ -9,8 +9,17 @@ namespace GroundTerminalSystem.Data
     /// <summary>
     /// Models the attributes of a flight.
     /// </summary>
-    class Flight
+    public class Flight : IDataFlight
     {
+        /// <summary>
+        /// Models the attributes of a flight.
+        /// </summary>
+        public Flight()
+        {
+            AttitudeParams = new List<AttitudeParams>();
+            G_ForceParams = new List<G_ForceParams>();
+        }
+
         /// <summary>
         /// Models the attributes of a flight.
         /// </summary>
@@ -25,42 +34,12 @@ namespace GroundTerminalSystem.Data
         }
 
         /// <value>Denotes the identifier for the aircraft, also know as its "tail".</value>
-        public String AircraftTail
-        {
-            get
-            {
-                return AircraftTail;
-            }
-            set
-            {
-                AircraftTail = value;
-            }
-        }
+        public String AircraftTail { get; set; }
 
         /// <value>Attitude values collected for this specific flight.</value>
-        public List<AttitudeParams> AttitudeParams
-        {
-            get
-            {
-                return AttitudeParams;
-            }
-            set
-            {
-                AttitudeParams = value;
-            }
-        }
+        public List<AttitudeParams> AttitudeParams { get; set; }
 
         /// <value>G-Force values collected for this specific flight.</value>
-        public List<G_ForceParams> G_ForceParams
-        {
-            get
-            {
-                return G_ForceParams;
-            }
-            set
-            {
-                G_ForceParams = value;
-            }
-        }
+        public List<G_ForceParams> G_ForceParams { get; set; }
     }
 }

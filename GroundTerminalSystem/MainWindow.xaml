@@ -20,8 +20,16 @@
                     </Grid.ColumnDefinitions>
                     <ListView x:Name="RealTimeFlightData" Grid.Row="0" Grid.ColumnSpan="2">
                         <ListView.View>
-                            <GridView>
-
+                            <GridView x:Name="RealTimeFlightDataGrid">
+                                <GridViewColumn Header="Flight" DisplayMemberBinding="{Binding AircraftTail}" Width="Auto"/>
+                                <GridViewColumn Header="Timestamp" DisplayMemberBinding="{Binding Timestamp}" Width="Auto"/>
+                                <GridViewColumn Header="Accel-X" DisplayMemberBinding="{Binding AccelX}" Width="Auto"/>
+                                <GridViewColumn Header="Accel-Y" DisplayMemberBinding="{Binding AccelY}" Width="Auto"/>
+                                <GridViewColumn Header="Accel-Z" DisplayMemberBinding="{Binding AccelZ}" Width="Auto"/>
+                                <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" Width="Auto"/>
+                                <GridViewColumn Header="Altitude" DisplayMemberBinding="{Binding Altitude}" Width="Auto"/>
+                                <GridViewColumn Header="Pitch" DisplayMemberBinding="{Binding Pitch}" Width="Auto"/>
+                                <GridViewColumn Header="Bank" DisplayMemberBinding="{Binding Bank}" Width="Auto"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

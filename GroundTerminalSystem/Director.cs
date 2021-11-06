@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GroundTerminalSystem.Data;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +22,35 @@ namespace GroundTerminalSystem
         /// <value>Instance of the Server, which is used to receive Communication from the ATS</value>
         public static Server ServerInstance = new Server("50001");
 
+        /// <value>Used to manage and store data in memory.</value>
+        public static DataManager DataManagerInstance = new DataManager();
+
+        /// <summary>
+        /// Starts the server.
+        /// </summary>
         public static void StartServer()
         {
             ServerInstance.StartBeingAServer();
         }
 
+        /// <summary>
+        /// Stops the server.
+        /// </summary>
         public static void StopServer()
         {
             ServerInstance.StopBeingAServer();
+        }
+
+        public static void SendFlightDataToMemory(String flightData)
+        {
+            Commons.WriteDataControl.WaitOne();
+            DataManagerInstance.AddFlightData(flightData);
+            Commons.WriteDataControl.ReleaseMutex();
+        }
+
+        public static ObservableCollection<FlightDisplay> DisplayFlightDataInMemory()
+        {
+            return DataManagerInstance.FlightsForDisplay;
         }
     }
 }
