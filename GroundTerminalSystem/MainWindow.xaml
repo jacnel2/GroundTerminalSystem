@@ -37,6 +37,29 @@
                     <Button x:Name="StopServerBtn" Grid.Row="1" Grid.Column="1" Click="StopServerBtn_Click">Stop Server</Button>
                 </Grid>
             </TabItem>
+
+
+
+            <!-- Database -->
+            <TabItem Header="Database Information System" Margin="-2.333,-2,-14.333,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--GFoce Datagrid -->
+                    <Label x:Name="gforceLb" Content="G-Force Parameters" Margin="19,5,523.667,166" FontWeight="Bold" Foreground="#FF0A37C8"/>
+                    <DataGrid x:Name="gforceDatagrid" HorizontalAlignment="Left" Height="156" Margin="19,30,0,0" VerticalAlignment="Top" Width="403"/>
+                    <!--Attitute Parameters Datagrid -->
+                    <Label x:Name="attitudeLb" Content="Attitute Parameters" HorizontalAlignment="Left" Margin="19,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="307" FontWeight="Bold" Foreground="#FF0A37C8"/>
+                    <DataGrid x:Name="attitudeDatagrid" HorizontalAlignment="Left" Height="146" Margin="19,30,0,0" Grid.Row="1" VerticalAlignment="Top" Width="403"/>
+
+                </Grid>
+            </TabItem>
+
+
+
         </TabControl>
     </DockPanel>
 </Window>
