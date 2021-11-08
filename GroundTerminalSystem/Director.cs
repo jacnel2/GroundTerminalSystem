@@ -68,7 +68,7 @@ namespace GroundTerminalSystem
         /// <returns>All GForce data stored in database.</returns>
         public static DataTable GetGForceGrid()
         {
-            return DatabaseManager.retrieveData("gForceParameters");
+            return DatabaseManager.RetrieveData("gForceParameters");
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace GroundTerminalSystem
         /// <returns>All Attitude data stored in the database.</returns>
         public static DataTable GetAttitudeGrid()
         {
-            return DatabaseManager.retrieveData("attitudeParameters");
+            return DatabaseManager.RetrieveData("attitudeParameters");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace GroundTerminalSystem
         /// <returns>The result of the clear.</returns>
         public static DataTable ClearGForceGrid()
         {
-            return DatabaseManager.deleteData("gForceParameters");
+            return DatabaseManager.DeleteData("gForceParameters");
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace GroundTerminalSystem
         /// <returns>The result of the clear.</returns>
         public static DataTable ClearAttitudeGrid()
         {
-            return DatabaseManager.deleteData("attitudeParameters");
+            return DatabaseManager.DeleteData("attitudeParameters");
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace GroundTerminalSystem
         /// <returns>The result of the search.</returns>
         public static DataTable SearchData(string dbTable, string startDate, string endDate)
         {
-            return DatabaseManager.searchDataBetweenDates(dbTable, startDate, endDate);
+            return DatabaseManager.SearchDataBetweenDates(dbTable, startDate, endDate);
         }
     }
 }

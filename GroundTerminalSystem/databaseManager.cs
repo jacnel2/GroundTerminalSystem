@@ -19,12 +19,17 @@ namespace GroundTerminalSystem
     /// </summary>
     public static class DatabaseManager
     {
-
+        /// <value>Server address.</value>
         private static string server = "aircraftdb.cdnao8zlugzc.us-west-2.rds.amazonaws.com";
+        /// <value>Database name.</value>
         private static string database = "aircraft_DB";
+        /// <value>Database username.</value>
         private static string dbUsername = "sqAdmin";
+        /// <value>Database password.</value>
         private static string dbPasscode = "group1sq";
+        /// <value>Database connection string.</value>
         private static string connectionStr = $"Data Source={server};Persist Security Info=False;Password={dbPasscode};User ID={dbUsername};Initial Catalog={database}";
+        /// <value>Database query.</value>
         private static string sqlQuery = "";
         public static DataTable dt = null;
 
@@ -36,7 +41,7 @@ namespace GroundTerminalSystem
         /// <param name="flightDataTail">The Flight tail.</param>
         /// <param name="GForce">Flight G-Force params.</param>
         /// <param name="attitude">Flight Attitude params.</param>
-        public static void insertData(string flightDataTail, G_ForceParams GForce, AttitudeParams attitude)
+        public static void InsertData(string flightDataTail, G_ForceParams GForce, AttitudeParams attitude)
         {
 
             using (SqlConnection sqlConn = new SqlConnection(connectionStr))
@@ -70,7 +75,7 @@ namespace GroundTerminalSystem
         /// </summary>
         /// <param name="dbTable">Table to gather data from.</param>
         /// <returns>A DataTable with all the information in the table.</returns>
-        public static DataTable retrieveData(string dbTable)
+        public static DataTable RetrieveData(string dbTable)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";
             using (SqlConnection sqlConn = new SqlConnection(connectionStr))
@@ -92,7 +97,7 @@ namespace GroundTerminalSystem
         /// </summary>
         /// <param name="dbTable">Table to delete data from.</param>
         /// <returns>A DataTable with all the information in the table.</returns>
-        public static DataTable deleteData(string dbTable)
+        public static DataTable DeleteData(string dbTable)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";
             using (SqlConnection sqlConn = new SqlConnection(connectionStr))
@@ -114,7 +119,7 @@ namespace GroundTerminalSystem
         /// </summary>
         /// <param name="dbTable">Table to gather data from.</param>
         /// <returns>A DataTable with all the gathered information.</returns>
-        public static DataTable searchDataBetweenDates(string dbTable, string startDate, string endDate)
+        public static DataTable SearchDataBetweenDates(string dbTable, string startDate, string endDate)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";
             using (SqlConnection sqlConn = new SqlConnection(connectionStr))
