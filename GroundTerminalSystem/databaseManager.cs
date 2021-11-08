@@ -31,6 +31,7 @@ namespace GroundTerminalSystem
         private static string connectionStr = $"Data Source={server};Persist Security Info=False;Password={dbPasscode};User ID={dbUsername};Initial Catalog={database}";
         /// <value>Database query.</value>
         private static string sqlQuery = "";
+        /// <summary>Used to return data.</summary>
         public static DataTable dt = null;
 
 
