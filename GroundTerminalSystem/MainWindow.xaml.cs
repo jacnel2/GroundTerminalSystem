@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace GroundTerminalSystem
 {
@@ -77,6 +79,66 @@ namespace GroundTerminalSystem
                 await Task.Delay(Commons.THREAD_SCREEN_UPDATE_WAIT);
                 RealTimeFlightData.Items.Refresh();
             }
+        }
+
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and displays ALL the data from the database table. 
+        /// </summary>
+        private void displayGForceGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.retrieveData("gForceParameters");
+            gforceDatagrid.ItemsSource = dt.DefaultView;
+
+        }
+
+
+        /// <summary>
+        /// Updates the attitude parameter Datagrid, and displays ALL the data from the database table. 
+        /// </summary>
+        private void displayAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.retrieveData("attitudeParameters");
+            attitudeDatagrid.ItemsSource = dt.DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and deletes all the data from the database table. 
+        /// </summary>
+        private void clearGForceGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.deleteData("gForceParameters");
+            gforceDatagrid.ItemsSource = dt.DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the Attitude parameter Datagrid, and deletes all the data from the database table. 
+        /// </summary>
+        private void clearAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.deleteData("attitudeParameters");
+            attitudeDatagrid.ItemsSource = dt.DefaultView;
+        }
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and displays ALL the data found within date range. 
+        /// </summary>
+        private void gForceSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.searchDataBetweenDates("gForceParameters", gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString());
+            gforceDatagrid.ItemsSource = dt.DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the attitude parameter Datagrid, and displays ALL the data found within date range. 
+        /// </summary>
+        private void attitudeSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = databaseManager.searchDataBetweenDates("attitudeParameters", attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString());
+            attitudeDatagrid.ItemsSource = dt.DefaultView;
         }
     }
 }
