@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace GroundTerminalSystem
 {
@@ -77,6 +79,59 @@ namespace GroundTerminalSystem
                 await Task.Delay(Commons.THREAD_SCREEN_UPDATE_WAIT);
                 RealTimeFlightData.Items.Refresh();
             }
+        }
+
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and displays ALL the data from the database table. 
+        /// </summary>
+        private void DisplayGForceGrid_Click(object sender, RoutedEventArgs e)
+        {
+            gforceDatagrid.ItemsSource = Director.GetGForceGrid().DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the attitude parameter Datagrid, and displays ALL the data from the database table. 
+        /// </summary>
+        private void DisplayAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        {
+            attitudeDatagrid.ItemsSource = Director.GetAttitudeGrid().DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and deletes all the data from the database table. 
+        /// </summary>
+        private void ClearGForceGrid_Click(object sender, RoutedEventArgs e)
+        {
+            gforceDatagrid.ItemsSource = Director.ClearGForceGrid().DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the Attitude parameter Datagrid, and deletes all the data from the database table. 
+        /// </summary>
+        private void ClearAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        {
+            attitudeDatagrid.ItemsSource = Director.ClearAttitudeGrid().DefaultView;
+        }
+
+        /// <summary>
+        /// Updates the gforce parameter Datagrid, and displays ALL the data found within date range. 
+        /// </summary>
+        private void GForceSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            gforceDatagrid.ItemsSource = Director.SearchData("gForceParameters", gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString()).DefaultView;
+        }
+
+
+        /// <summary>
+        /// Updates the attitude parameter Datagrid, and displays ALL the data found within date range. 
+        /// </summary>
+        private void AttitudeSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            attitudeDatagrid.ItemsSource = Director.SearchData("attitudeParameters", attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString()).DefaultView;
         }
     }
 }

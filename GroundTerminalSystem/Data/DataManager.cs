@@ -46,6 +46,9 @@ namespace GroundTerminalSystem.Data
             G_ForceParams newGForce = new G_ForceParams(newTimestamp, float.Parse(messageContents[1]), float.Parse(messageContents[2]), float.Parse(messageContents[3]), float.Parse(messageContents[4]));
             String flightDataTail = contentDivided[0];
 
+            //Add A line of data from ATS into database
+            DatabaseManager.InsertData(flightDataTail, newGForce, newAlt);
+
             if (Flights.Count == 0)
             {
                 Flight newFlight = new Flight();
