@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundTerminalSystem"
         mc:Ignorable="d"
-        Title="Ground Terminal System" Height="450" Width="800">
+        Title="Ground Terminal System" Height="450" Width="800" ResizeMode="NoResize">
     <DockPanel>
         <TabControl x:Name="TabCntrl" DockPanel.Dock="Top" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Real Time Information System">
@@ -47,13 +47,31 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
+                    <Label x:Name="testLabel" Content="Label" Margin="306,4,342.667,164"/>
                     <!--GFoce Datagrid -->
-                    <Label x:Name="gforceLb" Content="G-Force Parameters" Margin="19,5,523.667,166" FontWeight="Bold" Foreground="#FF0A37C8"/>
-                    <DataGrid x:Name="gforceDatagrid" HorizontalAlignment="Left" Height="156" Margin="19,30,0,0" VerticalAlignment="Top" Width="403"/>
+                    <Border Grid.Row="0" Background="#FFE2E9FF"/>
+                    <Label x:Name="gforceLb" Content="G-Force Parameters" Margin="19,4,523.667,0" FontWeight="Bold" Foreground="#FF0A37C8" VerticalAlignment="Top" Height="25"/>
+                    <DataGrid x:Name="gforceDatagrid" HorizontalAlignment="Left" Height="156" Margin="19,34,0,0" VerticalAlignment="Top" Width="403" IsReadOnly="True"/>
+                    <Button x:Name="displayGForceGrid" Content="Display G-Force Table" HorizontalAlignment="Left" Margin="455,37,0,0" VerticalAlignment="Top" Width="144" Height="35" Background="#FFC2F389" Click="displayGForceGrid_Click"/>
+                    <Button x:Name="clearGForceGrid" Content="Clear G-Force Table" HorizontalAlignment="Left" Margin="620,37,0,0" VerticalAlignment="Top" Width="141" Height="35" Background="#FFF7B6BE" Click="clearGForceGrid_Click"/>
+                    <Label x:Name="gforceStartLb" Content="Start" Margin="509,0,229.667,82" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="48"/>
+                    <DatePicker x:Name="gForceStartDate" Margin="466,114,195.667,54"/>
+                    <Label x:Name="gforceEndtLb" Content="End" Margin="674,0,70.667,82" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="42"/>
+                    <DatePicker x:Name="gForceEndDate" Margin="630,114,33.667,54"/>
+                    <Button x:Name="gForceSearchBtn" Content="Seatch Data Between Dates" Margin="509,159,92.667,10" FontWeight="Bold" Click="gForceSearchBtn_Click"/>
+
+
                     <!--Attitute Parameters Datagrid -->
+                    <Border Grid.Row="1" Background="#FFCDD5FB"/>
                     <Label x:Name="attitudeLb" Content="Attitute Parameters" HorizontalAlignment="Left" Margin="19,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="307" FontWeight="Bold" Foreground="#FF0A37C8"/>
-                    <DataGrid x:Name="attitudeDatagrid" HorizontalAlignment="Left" Height="146" Margin="19,30,0,0" Grid.Row="1" VerticalAlignment="Top" Width="403"/>
+                    <DataGrid x:Name="attitudeDatagrid" HorizontalAlignment="Left" Height="146" Margin="19,30,0,0" Grid.Row="1" VerticalAlignment="Top" Width="403" IsReadOnly="True"/>
+                    <Button x:Name="displayAttitudeGrid" Content="Display Attitude Table" Margin="455,30,187.667,130" Grid.Row="1" Background="#FFC2F389" Click="displayAttitudeGrid_Click"/>
+                    <Button x:Name="clearAttitudeGrid" Content="Clear Attitude Table" Margin="620,30,25.667,130" Grid.Row="1" Background="#FFF7B6BE" Click="clearAttitudeGrid_Click"/>
+                    <Label x:Name="attitudeStartLb" Content="Start" Margin="509,0,229.667,84" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="48"/>
+                    <DatePicker x:Name="attitudeStartDate" Margin="466,112,195.667,56" Grid.Row="1"/>
+                    <Label x:Name="attitudeEndtLb" Content="End" Margin="674,0,70.667,84" FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="42"/>
+                    <DatePicker x:Name="attitudeEndDate" Margin="630,112,33.667,56" Grid.Row="1"/>
+                    <Button x:Name="attitudeSearchBtn" Content="Seatch Data Between Dates" Margin="509,149,92.667,20" Grid.Row="1" FontWeight="Bold" Click="attitudeSearchBtn_Click"/>
 
                 </Grid>
             </TabItem>
