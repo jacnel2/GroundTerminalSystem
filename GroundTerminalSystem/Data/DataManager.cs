@@ -47,7 +47,7 @@ namespace GroundTerminalSystem.Data
             String flightDataTail = contentDivided[0];
 
             //Add A line of data from ATS into database
-            databaseManager.insertData(flightDataTail, newGForce, newAlt);
+            DatabaseManager.insertData(flightDataTail, newGForce, newAlt);
 
             if (Flights.Count == 0)
             {

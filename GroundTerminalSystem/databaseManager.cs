@@ -9,13 +9,15 @@ using GroundTerminalSystem.Data;
 
 namespace GroundTerminalSystem
 {
-    //  This class manages: 
-    //      a) - the Database connection
-    //      b) - the Database data insertion
-    //      c) - the Database data deletion
-    //      c) - the Database data retrieval
-    //      d) - the Database data search
-    public static class databaseManager
+    /// <summary>
+    /// This class manages: 
+    ///      a) - the Database connection
+    ///      b) - the Database data insertion
+    ///      c) - the Database data deletion
+    ///      c) - the Database data retrieval
+    ///      d) - the Database data search
+    /// </summary>
+    public static class DatabaseManager
     {
 
         private static string server = "aircraftdb.cdnao8zlugzc.us-west-2.rds.amazonaws.com";
@@ -28,7 +30,12 @@ namespace GroundTerminalSystem
 
 
 
-        //insert AST data into tables
+        /// <summary>
+        /// insert AST data into tables
+        /// </summary>
+        /// <param name="flightDataTail">The Flight tail.</param>
+        /// <param name="GForce">Flight G-Force params.</param>
+        /// <param name="attitude">Flight Attitude params.</param>
         public static void insertData(string flightDataTail, G_ForceParams GForce, AttitudeParams attitude)
         {
 
@@ -58,7 +65,11 @@ namespace GroundTerminalSystem
 
         }
 
-        //retrieve all data from table
+        /// <summary>
+        /// Retrieve all data from table.
+        /// </summary>
+        /// <param name="dbTable">Table to gather data from.</param>
+        /// <returns>A DataTable with all the information in the table.</returns>
         public static DataTable retrieveData(string dbTable)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";
@@ -76,7 +87,11 @@ namespace GroundTerminalSystem
             }
         }
 
-        //delete content from table
+        /// <summary>
+        /// Delete data from table.
+        /// </summary>
+        /// <param name="dbTable">Table to delete data from.</param>
+        /// <returns>A DataTable with all the information in the table.</returns>
         public static DataTable deleteData(string dbTable)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";
@@ -94,7 +109,11 @@ namespace GroundTerminalSystem
         }
 
 
-        //retrieve  data from table, between date range
+        /// <summary>
+        /// Retrieve  data from table, between date range.
+        /// </summary>
+        /// <param name="dbTable">Table to gather data from.</param>
+        /// <returns>A DataTable with all the gathered information.</returns>
         public static DataTable searchDataBetweenDates(string dbTable, string startDate, string endDate)
         {
             //connectionStr = $"Data Source={server};Initial Catalog={database};Integrated Security=True";

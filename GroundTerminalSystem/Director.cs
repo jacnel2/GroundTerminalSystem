@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,11 @@ namespace GroundTerminalSystem
         {
             ServerInstance.StopBeingAServer();
         }
-
+        
+        /// <summary>
+        /// Takes a string of Flight data and stores it in memory.
+        /// </summary>
+        /// <param name="flightData">String of data to store.</param>
         public static void SendFlightDataToMemory(String flightData)
         {
             Commons.WriteDataControl.WaitOne();
@@ -48,9 +53,61 @@ namespace GroundTerminalSystem
             Commons.WriteDataControl.ReleaseMutex();
         }
 
+        /// <summary>
+        /// Returns all Flight data in memory as a FlightDisplay object.
+        /// </summary>
+        /// <returns>Returns all Flight data in memory as a FlightDisplay object.</returns>
         public static ObservableCollection<FlightDisplay> DisplayFlightDataInMemory()
         {
             return DataManagerInstance.FlightsForDisplay;
+        }
+
+        /// <summary>
+        /// Gathers all GForce data stored in database.
+        /// </summary>
+        /// <returns>All GForce data stored in database.</returns>
+        public static DataTable GetGForceGrid()
+        {
+            return DatabaseManager.retrieveData("gForceParameters");
+        }
+
+        /// <summary>
+        /// Gathers all Attitude data stored in the database.
+        /// </summary>
+        /// <returns>All Attitude data stored in the database.</returns>
+        public static DataTable GetAttitudeGrid()
+        {
+            return DatabaseManager.retrieveData("attitudeParameters");
+        }
+
+        /// <summary>
+        /// Clears the GForce database.
+        /// </summary>
+        /// <returns>The result of the clear.</returns>
+        public static DataTable ClearGForceGrid()
+        {
+            return DatabaseManager.deleteData("gForceParameters");
+        }
+
+        /// <summary>
+        /// Clears the Attitude database.
+        /// </summary>
+        /// <returns>The result of the clear.</returns>
+        public static DataTable ClearAttitudeGrid()
+        {
+            return DatabaseManager.deleteData("attitudeParameters");
+        }
+
+        /// <summary>
+        /// Searches for data within the given range for the given table.
+        /// </summary>
+        /// <param name="dbTable">Table to search.</param>
+        /// <param name="startDate">Starting date for search range.</param>
+        /// <param name="endDate">End date for search range.</param>
+        /// <returns>The result of the search.</returns>
+        public static DataTable SearchData(string dbTable, string startDate, string endDate)
+        {
+            return DatabaseManager.searchDataBetweenDates(dbTable, startDate, endDate);
         }
     }
 }

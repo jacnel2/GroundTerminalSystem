@@ -85,60 +85,53 @@ namespace GroundTerminalSystem
         /// <summary>
         /// Updates the gforce parameter Datagrid, and displays ALL the data from the database table. 
         /// </summary>
-        private void displayGForceGrid_Click(object sender, RoutedEventArgs e)
+        private void DisplayGForceGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.retrieveData("gForceParameters");
-            gforceDatagrid.ItemsSource = dt.DefaultView;
-
+            gforceDatagrid.ItemsSource = Director.GetGForceGrid().DefaultView;
         }
 
 
         /// <summary>
         /// Updates the attitude parameter Datagrid, and displays ALL the data from the database table. 
         /// </summary>
-        private void displayAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        private void DisplayAttitudeGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.retrieveData("attitudeParameters");
-            attitudeDatagrid.ItemsSource = dt.DefaultView;
+            attitudeDatagrid.ItemsSource = Director.GetAttitudeGrid().DefaultView;
         }
 
 
         /// <summary>
         /// Updates the gforce parameter Datagrid, and deletes all the data from the database table. 
         /// </summary>
-        private void clearGForceGrid_Click(object sender, RoutedEventArgs e)
+        private void ClearGForceGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.deleteData("gForceParameters");
-            gforceDatagrid.ItemsSource = dt.DefaultView;
+            gforceDatagrid.ItemsSource = Director.ClearGForceGrid().DefaultView;
         }
 
 
         /// <summary>
         /// Updates the Attitude parameter Datagrid, and deletes all the data from the database table. 
         /// </summary>
-        private void clearAttitudeGrid_Click(object sender, RoutedEventArgs e)
+        private void ClearAttitudeGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.deleteData("attitudeParameters");
-            attitudeDatagrid.ItemsSource = dt.DefaultView;
+            attitudeDatagrid.ItemsSource = Director.ClearAttitudeGrid().DefaultView;
         }
 
         /// <summary>
         /// Updates the gforce parameter Datagrid, and displays ALL the data found within date range. 
         /// </summary>
-        private void gForceSearchBtn_Click(object sender, RoutedEventArgs e)
+        private void GForceSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.searchDataBetweenDates("gForceParameters", gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString());
-            gforceDatagrid.ItemsSource = dt.DefaultView;
+            gforceDatagrid.ItemsSource = Director.SearchData("gForceParameters", gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString()).DefaultView;
         }
 
 
         /// <summary>
         /// Updates the attitude parameter Datagrid, and displays ALL the data found within date range. 
         /// </summary>
-        private void attitudeSearchBtn_Click(object sender, RoutedEventArgs e)
+        private void AttitudeSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = databaseManager.searchDataBetweenDates("attitudeParameters", attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString());
-            attitudeDatagrid.ItemsSource = dt.DefaultView;
+            attitudeDatagrid.ItemsSource = Director.SearchData("attitudeParameters", attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString()).DefaultView;
         }
     }
 }
