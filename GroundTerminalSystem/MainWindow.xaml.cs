@@ -41,6 +41,71 @@ namespace GroundTerminalSystem
             UpdateScreen();
         }
 
+        GridViewColumnHeader lastHeaderClicked = null;
+        ListSortDirection lastDirection = ListSortDirection.Ascending;
+
+
+        /// <summary>
+        /// Allows the list to be sorted by clicking the tabs.
+        /// </summary>
+        /// <param name="sender">Object which called this method.</param>
+        /// <param name="e">Calling event args.</param>
+        private void HeaderClickedHandler(object sender, RoutedEventArgs e)
+        {
+            //Get clicked header
+            var clickedHeader = e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection dir;
+
+            //If a header is clicked
+            if ((clickedHeader != null) && (clickedHeader.Role != GridViewColumnHeaderRole.Padding))
+            {
+                //If header was not last clicked sort by ascending
+                if (clickedHeader != lastHeaderClicked)
+                {
+                    dir = ListSortDirection.Ascending;
+                }
+                //Else if last clicked change sort direction
+                else
+                {
+                    if (lastDirection == ListSortDirection.Ascending)
+                    {
+                        dir = ListSortDirection.Descending;
+                    }
+                    else
+                    {
+                        dir = ListSortDirection.Ascending;
+                    }
+                }
+
+                var binding = clickedHeader.Column.DisplayMemberBinding as Binding;
+                var sortBy = binding?.Path.Path ?? clickedHeader.Column.Header as string;
+                
+                Sort(sortBy, dir);
+
+                lastHeaderClicked = clickedHeader;
+                lastDirection = dir;
+            }
+        }
+
+
+        /// <summary>
+        /// Takes in a list and sorts it
+        /// </summary>
+        /// <param name="sortBy">What to sor the list by.</param>
+        /// <param name="e">Calling event args.</param>
+        private void Sort(string sortBy, ListSortDirection direction)
+        {
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(RealTimeFlightData.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+
+
+
         /// <summary>
         /// Provides the ability to switch between the Real Time Information System tab and the Database Search tab.
         /// </summary>
