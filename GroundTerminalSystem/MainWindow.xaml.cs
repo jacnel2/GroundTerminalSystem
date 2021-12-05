@@ -188,6 +188,7 @@ namespace GroundTerminalSystem
         private void GForceSearchBtn_Click(object sender, RoutedEventArgs e)
         {
             gforceDatagrid.ItemsSource = Director.SearchData("gForceParameters", gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString()).DefaultView;
+            gfErrorLabel.Content = Director.DisplayInputError(gForceStartDate.SelectedDate.ToString(), gForceEndDate.SelectedDate.ToString());
         }
 
 
@@ -197,6 +198,7 @@ namespace GroundTerminalSystem
         private void AttitudeSearchBtn_Click(object sender, RoutedEventArgs e)
         {
             attitudeDatagrid.ItemsSource = Director.SearchData("attitudeParameters", attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString()).DefaultView;
+            apErrorLabel.Content = Director.DisplayInputError(attitudeStartDate.SelectedDate.ToString(), attitudeEndDate.SelectedDate.ToString());
         }
     }
 }

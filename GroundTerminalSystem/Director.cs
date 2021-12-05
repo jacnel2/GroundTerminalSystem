@@ -109,5 +109,14 @@ namespace GroundTerminalSystem
         {
             return DatabaseManager.SearchDataBetweenDates(dbTable, startDate, endDate);
         }
+
+        /// <summary>
+        /// Display error when input is empty.
+        /// </summary>
+        /// <returns>Error message.</returns>
+        public static string DisplayInputError(string startDate, string endDate)
+        {
+            return DatabaseManager.DisplayInputError(startDate, endDate);
+        }
     }
 }
