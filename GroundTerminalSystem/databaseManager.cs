@@ -136,7 +136,37 @@ namespace GroundTerminalSystem
             }
         }
 
+        /// <summary>
+        /// Retrieve  data from table, between date range.
+        /// </summary>
+        /// <param name="startDate">start date to retrieve data from.</param>
+        /// <param name="endDate">end date to retrieve data from.</param>
+        /// <returns>Error message if input is invalid.</returns>
+        public static string DisplayInputError(string startDate, string endDate)
+        {
+            string errorMessage = "";
 
+            if (string.IsNullOrWhiteSpace(startDate) && string.IsNullOrWhiteSpace(endDate))
+            {
+                errorMessage = "Error: Empty Dates";
+
+            }
+            else if (string.IsNullOrWhiteSpace(startDate))
+            {
+                errorMessage = "Error: Empty StartDate";
+            }
+            else if (string.IsNullOrWhiteSpace(endDate))
+            {
+                errorMessage = "Error: Empty EndDate";
+            }
+            //else if (Convert.ToDateTime(startDate) > Convert.ToDateTime(endDate))
+            //{
+            //    errorMessage = "Error: StartDate is greater than EndDate";
+            //}
+
+            return errorMessage;
+
+        }
 
     }
 }
