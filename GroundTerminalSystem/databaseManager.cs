@@ -128,7 +128,16 @@ namespace GroundTerminalSystem
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 dt = new DataTable();
 
-                sqlQuery = $"SELECT * from {dbTable} WHERE timeStamp BETWEEN '{startDate}'AND '{endDate}'";
+                //check dates are not empty
+                if (!String.IsNullOrEmpty(startDate) && !String.IsNullOrEmpty(endDate))
+                {
+                    //parse dates
+                    startDate = startDate.Substring(0, startDate.IndexOf(" "));
+                    endDate = endDate.Substring(0, endDate.IndexOf(" "));
+
+                }
+
+                sqlQuery = $"SELECT * from {dbTable} WHERE timeStamp BETWEEN '{startDate}'AND '{endDate} 23:59:59.999'";
                 adapter.SelectCommand = new SqlCommand(sqlQuery, sqlConn);
                 adapter.Fill(dt);
                 return dt;
