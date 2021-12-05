@@ -159,10 +159,10 @@ namespace GroundTerminalSystem
             {
                 errorMessage = "Error: Empty EndDate";
             }
-            //else if (Convert.ToDateTime(startDate) > Convert.ToDateTime(endDate))
-            //{
-            //    errorMessage = "Error: StartDate is greater than EndDate";
-            //}
+            else if (Convert.ToDateTime(startDate) > Convert.ToDateTime(endDate))
+            {
+                errorMessage = "Error: StartDate is greater than EndDate";
+            }
 
             return errorMessage;
 
