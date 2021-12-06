@@ -176,6 +176,32 @@ namespace GroundTerminalSystem
             return errorMessage;
 
         }
+        
+        
+        /// <summary>
+        /// test if connection with AWS is stablished
+        /// </summary>
+        /// <returns>True if connection is successful, else false</returns>
+        public static Boolean TestConnection() {
+
+            Boolean connStablished = false;
+
+            using (SqlConnection sqlConn = new SqlConnection(connectionStr))
+            {
+                sqlConn.Open();
+                
+                if (sqlConn.State == ConnectionState.Open)
+                {
+                    sqlConn.Close();
+                    return connStablished = true;
+                    
+                }
+
+            }
+
+            return connStablished;
+ 
+        }
 
     }
 }
