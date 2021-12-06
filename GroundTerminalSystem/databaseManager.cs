@@ -42,32 +42,44 @@ namespace GroundTerminalSystem
         /// <param name="flightDataTail">The Flight tail.</param>
         /// <param name="GForce">Flight G-Force params.</param>
         /// <param name="attitude">Flight Attitude params.</param>
-        public static void InsertData(string flightDataTail, G_ForceParams GForce, AttitudeParams attitude)
+        public static Boolean InsertData(string flightDataTail, G_ForceParams GForce, AttitudeParams attitude)
         {
 
-            using (SqlConnection sqlConn = new SqlConnection(connectionStr))
-            {
-                sqlConn.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter();
+           Boolean insertSuccess = false;
 
-                //add new entry in G-Force Parameters table
-                sqlQuery = $"INSERT INTO gForceParameters (aircraftTail_PK,timeStamp, Accel_X, Accel_Y, Accel_Z, Weight) VALUES('{flightDataTail}', GETDATE(), {GForce.AccelX}, {GForce.AccelY}, {GForce.AccelZ}, {GForce.Weight}); ";
-                adapter.InsertCommand = new SqlCommand(sqlQuery, sqlConn);
-                adapter.InsertCommand.ExecuteNonQuery();
+            try {
 
-                //add new entry in Attitude Parameters table
-                sqlQuery = $"INSERT INTO attitudeParameters (aircraftTail_PK,timeStamp, Altitude, Pitch, Bank) VALUES('{flightDataTail}', GETDATE(), {attitude.Altitude}, {attitude.Pitch}, {attitude.Bank}); ";
-                adapter.InsertCommand = new SqlCommand(sqlQuery, sqlConn);
-                adapter.InsertCommand.ExecuteNonQuery();
-
-                if (sqlConn.State == ConnectionState.Open)
+                using (SqlConnection sqlConn = new SqlConnection(connectionStr))
                 {
-                    sqlConn.Close();
+                    sqlConn.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+
+                    //add new entry in G-Force Parameters table
+                    sqlQuery = $"INSERT INTO gForceParameters (aircraftTail_PK,timeStamp, Accel_X, Accel_Y, Accel_Z, Weight) VALUES('{flightDataTail}', GETDATE(), {GForce.AccelX}, {GForce.AccelY}, {GForce.AccelZ}, {GForce.Weight}); ";
+                    adapter.InsertCommand = new SqlCommand(sqlQuery, sqlConn);
+                    adapter.InsertCommand.ExecuteNonQuery();
+
+                    //add new entry in Attitude Parameters table
+                    sqlQuery = $"INSERT INTO attitudeParameters (aircraftTail_PK,timeStamp, Altitude, Pitch, Bank) VALUES('{flightDataTail}', GETDATE(), {attitude.Altitude}, {attitude.Pitch}, {attitude.Bank}); ";
+                    adapter.InsertCommand = new SqlCommand(sqlQuery, sqlConn);
+                    adapter.InsertCommand.ExecuteNonQuery();
+
+                    if (sqlConn.State == ConnectionState.Open)
+                    {
+                        sqlConn.Close();
+                    }
+
                 }
-
+                Console.WriteLine("Data inserted in Database");
+                insertSuccess = true;
             }
-            Console.WriteLine("Data inserted in Database");
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                insertSuccess = false;
+            }
 
+            return insertSuccess;
 
         }
 
